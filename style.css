@@ -311,7 +311,7 @@ box-shadow: var(--box-shadow);
   background-color: #1c1c1cd8;
   color: #ffff;   
   font-size: small;
-  text-align: justify;
+  text-align: center;
 }
 .social-footer a{
   text-decoration: none;
@@ -366,7 +366,7 @@ box-shadow: var(--box-shadow);
   filter: drop-shadow(0 10px 5px #55FBDC);
 }
 .footer-main{
-  display: flex;
+  display: inline;
   justify-content: space-around;
   margin: auto;
   grid-template-columns: minmax(20px,300px)  minmax(20px,300px) ;
@@ -379,7 +379,6 @@ box-shadow: var(--box-shadow);
     margin-top: 2rem;
     margin-bottom: 1.5rem;
   }
-
 .footer-main h3{
   font-size: large;
 }
@@ -461,16 +460,6 @@ box-shadow: var(--box-shadow);
       display: inline;
       margin: 0;
     }
-  
-   .logo img{
-     width: 250px;
-     height: 100;
-     padding: 0;
-   }
-   .logo{  /*logo */
-     align-items: center;
-     justify-content:center;
-   }
    .navbar ul li{
      display: inline;
     }
