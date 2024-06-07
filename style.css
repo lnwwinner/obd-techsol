@@ -152,7 +152,12 @@ body {
   }
 .sidebar {  /* sidebar Section*/
   grid-area: sidebar;
-  background-color: var(--darkblue);
+  background:linear-gradient(#00157c81,rgba(0, 0, 0, 0.1)),url(images/blue-technology-background.jpg);
+  align-content: center;
+}
+.sidebar video{
+  width: 98% ;
+  height:70% ;
 }
 .main {
   grid-area: main;
@@ -316,7 +321,7 @@ box-shadow: var(--box-shadow);
 .social-footer a{
   text-decoration: none;
   color: #ffff; 
-
+  text-align: center;
 }
 
 .social-footer a:hover {
@@ -408,6 +413,7 @@ box-shadow: var(--box-shadow);
       "services services" auto
       "contact contact" auto
       "footer  footer"  100px /
+
       300px    auto;
   }
   .footer-main{
