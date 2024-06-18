@@ -30,7 +30,7 @@ document.querySelector('.popup-image span').onclick = () =>{
 /*  scroll reveal */
 ScrollReveal({
     distance: '80px',
-    duration: 1500,
+    duration: 1600,
     delay:100,
 });
 
