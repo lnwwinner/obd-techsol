@@ -335,11 +335,11 @@ border-radius: 15px;
   padding: 5px;
 } 
 .website-box{
-  width: 400px;
-  height: 480px;
-  max-height: 500px;
-  position: relative;
-  top:25%; left: 12%;
+  width: 95%;
+  height: auto;
+  top: 50%;left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
   background: var(--black);
   padding: 25px;
   /*border: 2px solid var(--greenblue);*/
@@ -349,6 +349,40 @@ border-radius: 15px;
   filter: drop-shadow(0 10px 5px #55FBDC);
   border-radius: 20px;
   justify-content: center;
+}
+.webapp-box{
+  width: 95%;
+  height: auto;
+  top: 50%;left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: var(--black);
+  padding: 25px;
+  /*border: 2px solid var(--greenblue);*/
+  transition: .5 ease;
+  color: #fff;
+  box-shadow: var(--box-shadow);
+  filter: drop-shadow(0 10px 5px #55FBDC);
+  border-radius: 20px;
+  justify-content: center;
+  display: none;
+}
+.more-box{
+    width: 95%;
+    height: 400px;
+    top: 50%;left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    background: var(--black);
+    padding: 25px;
+    /*border: 2px solid var(--greenblue);*/
+    transition: .5 ease;
+    color: #fff;
+    box-shadow: var(--box-shadow);
+    filter: drop-shadow(0 10px 5px #55FBDC);
+    border-radius: 20px;
+    justify-content: center;
+    display: none;
 }
 .contact {
   grid-area: contact;
@@ -549,9 +583,7 @@ box-shadow: var(--box-shadow);
      display: inline;
     }
     
-.website-box{
-    top: 5%;
-    }
+
 
 }
 

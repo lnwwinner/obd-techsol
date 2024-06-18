@@ -9,12 +9,22 @@ window.onscroll = ()=>{
     menu.classList.remove('fa-times');
     navbar.classList.remove('active');
   }
-  document.querySelector('#learn-more').onclick = () =>{ 
+  document.querySelector('#btnwebsite').onclick = () =>{ 
     document.querySelector('.popup-image').style.display = 'block';
+  }
+  document.querySelector('#btnwebapp').onclick = () =>{ 
+    document.querySelector('.popup-image').style.display = 'block';
+    document.querySelector('.webapp-box').style.display = 'block';
     }
+  document.querySelector('#btnmore').onclick = () =>{ 
+    document.querySelector('.popup-image').style.display = 'block';
+    document.querySelector('.more-box').style.display = 'block';
+  }
 
 document.querySelector('.popup-image span').onclick = () =>{
     document.querySelector('.popup-image').style.display = 'none';
+    document.querySelector('.webapp-box').style.display = 'none';
+    document.querySelector('.more-box').style.display = 'none';
 }
 
 /*  scroll reveal */
