@@ -348,6 +348,57 @@ border-radius: 15px;
   justify-content: center;
   display: none;
 }
+/*=============== PROJECTS ===============*/
+.projects{
+  grid-area: projects;
+  background-color: var(--blue-opaco);
+}
+.work-container{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--blue-opaco);
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem 0px;
+}
+article {
+border-radius: 10px;
+}
+.work-link{
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--box-shadow);
+}
+.work-img{
+  width: 350px;
+  height: 300px;
+  transition: filter .5s, transform .5s;
+}
+#work-icon{
+  position: absolute;
+  top: 1.3rem;
+  right: 1.3rem;
+  font-size: 2rem;
+  color:var(--greenblue);
+  transition: transform .5s;
+}
+.work-icon:hover,
+.work-img:hover{
+  transform: scale(1.1);
+  filter: none;
+}
+.work-link:hover .work-icon{
+  transform: translate(8px, -8px) rotate(-30deg);
+}
+.work-title{
+  font-size: 2rem;
+  color: var(--white);
+}
+/*=============== CONTACT ===============*/
 .contact {
   grid-area: contact;
   background-color: var(--black);
@@ -468,6 +519,17 @@ box-shadow: var(--box-shadow);
   color: var(--light-color);
   text-align: center;
 }
+/*=============== SCROLL BAR ===============*/
+::-webkit-scrollbar{
+  width: 15px;
+}
+::-webkit-scrollbar-thumb{
+  background-color: var(--blue);
+}
+::-webkit-scrollbar-track{
+  background-color: var(--black);
+}
+
 .grid-container {
   display: grid;
   gap: 10px;
@@ -476,6 +538,7 @@ box-shadow: var(--box-shadow);
     "main"    auto
     "sidebar" 400px
     "services"  auto
+    "projects"  auto
     "contact"  auto
     "footer"  200px;
 }
@@ -487,10 +550,14 @@ box-shadow: var(--box-shadow);
       "header  header"  90px
       "sidebar main"    auto
       "services services" auto
+      "projects projects" auto
       "contact contact" auto
       "footer  footer"  100px /
 
       300px    auto;
+  }
+  .work-link{
+    display: flex;
   }
   .footer-main{
     display: flex;
@@ -509,6 +576,7 @@ box-shadow: var(--box-shadow);
       "header    header   header"  80px
       "sidebar   main      main"   auto
       "services  services  services" auto
+      "projects projects projects" auto
       "contact   contact   contact" auto
       "footer    footer    footer"  180px /
       400px       auto     600px;
@@ -548,9 +616,14 @@ box-shadow: var(--box-shadow);
     }
     .popup-box{
       width: auto;
-     
     }
-
+    .work-container{
+      display: grid;
+      background-color: var(--blue-opaco);
+      grid-template-columns: repeat(3,350px);      
+      row-gap: 3rem;
+      column-gap: 4rem;
+    }
 
 }
 
