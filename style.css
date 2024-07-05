@@ -1,7 +1,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Public+Sans&display=swap");
 :root{
-  --darkblue:#030372;
+  --darkblue:#010129;
   --greenblue:#55FBDC;
   --blue-opaco:#124b79;
   --blue:#0000ff;
@@ -44,8 +44,15 @@ body {
   padding: 5px;
   text-align: center;
 }
+.heading{
 
-.header {  /* Header Section*/
+  margin: 2rem;
+  font-size: 30px;
+  color: var(--white);
+
+}
+/* Header Section*/
+.header {  
   grid-area: header ;
   background-color: var(--black);
   display: flex;
@@ -53,7 +60,7 @@ body {
   justify-content: space-between;
   padding: 1rem;
   top: 0;
-  position: sticky;
+  position: fixed;
   width: 100%;
   height: 100px;
   z-index: 100;
@@ -144,15 +151,13 @@ body {
   color: var(--darkblue);
   filter: drop-shadow(0 10px 5px #0000ff );
  }
- .heading{
-  margin: 1rem;
-  font-size: 30px;
-  color: #ffff;
-  }
+
   span{
     color: var(--greenblue);
   }
-.sidebar {  /* sidebar Section*/
+
+ /* sidebar Section*/ 
+.sidebar {  
   grid-area: sidebar;
   background:linear-gradient(rgba(0, 0, 0, 0.1),#00157c81),url(images/blue-technology-background.jpg);
   align-content: center;
@@ -162,6 +167,7 @@ body {
 }
 .sidebar h2{
   filter: drop-shadow(0 10px 5px #55FBDC);
+  color: var(--greenblue);
   animation: floatImage 4s ease-in-out infinite;
 }
 @keyframes floatImage{
@@ -175,6 +181,7 @@ body {
     transform:translateY(0);
   }
 }
+/* ----------Home Section--------- */
 .main {
   grid-area: main;
   display: block;
@@ -226,20 +233,22 @@ border-radius: 15px;
   margin-left: 8rem;
 }
 
+/* ----------Services Section--------- */
 .services {
     grid-area: services;
-    background-color: var(--blue-opaco);
+    background: var(--blue-opaco);
     padding-top: 90px;
 }
 .service-container{
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  background-color: var(--blue-opaco);
+ /* background-color: var(--blue-opaco);    took off to show the backgorund img*/ 
   justify-content: center;
   align-items: center;
   gap: 2rem;
   padding: 0px;
+  margin-bottom: 2rem;
 }
 .service-container .service-box{
   width: 300px;
@@ -261,7 +270,7 @@ border-radius: 15px;
   margin: auto;
   border-radius: 10px;
 }
-.service-container .service-box:not(:hover){
+.service-container:hover .service-box:not(:hover){
   transform: scale(.90);
   opacity:.85;
 }
@@ -285,7 +294,9 @@ border-radius: 15px;
     font-size: large;
     line-height: 1.5rem;
 }
-.popup-image{    /*popup image */
+
+/* -----------------popup image ------------*/
+.popup-image{    
   position: fixed;
   top: 0%; left: 0;
   background:#555555c9;
@@ -352,6 +363,7 @@ border-radius: 15px;
 .projects{
   grid-area: projects;
   background-color: var(--blue-opaco);
+  padding-top: 90px;
 }
 .work-container{
   width: 100%;
@@ -395,15 +407,17 @@ border-radius: 10px;
   transform: translate(8px, -8px) rotate(-30deg);
 }
 .work-title{
-  font-size: 2rem;
+  font-size: 18px;
+  line-height: 1.8rem;
   color: var(--white);
 }
 /*=============== CONTACT ===============*/
 .contact {
   grid-area: contact;
-  background-color: var(--black);
+  background-color: var(--darkblue);
   padding-top: 90px;
 }
+
 .contactus-container{
   width: 100%;
   padding: 1rem;
@@ -434,13 +448,15 @@ border-radius: 15px;
 margin: 10px 0px;
 box-shadow: var(--box-shadow);
 }
+
+/* ------------footer---------------*/
 .footer{
   grid-area: footer;
   width: 100%;
   margin: auto;
   padding: 10px;
   margin-bottom: 10px;
-  background-color: #1c1c1cd8;
+  background-color: var(--black);
   color: #ffff;   
   font-size: small;
   text-align: center;
@@ -492,10 +508,10 @@ box-shadow: var(--box-shadow);
 }
 .foot1 a:hover{
   background-color: none;
-  color:var(--darkblue);
-  font-size: 18px;
+  color:var(--greenblue);
+  font-size: 17px;
   font-weight: bold;
-  filter: drop-shadow(0 10px 5px #55FBDC);
+  filter: drop-shadow(0 10px 5px #0000ff);
 }
 .footer-main{
   display: inline;
