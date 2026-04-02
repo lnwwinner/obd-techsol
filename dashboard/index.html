@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OBD TechSol Dashboard</title>
+</head>
+<body>
+    <h1>🚗 OBD TechSol Dashboard</h1>
+    <button onclick="loadData()">Load Data</button>
+    <pre id="output"></pre>
+
+    <script>
+        async function loadData() {
+            const res = await fetch('http://localhost:8000/data', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    vehicle_id: 'DEMO',
+                    lat: 13.75,
+                    lon: 100.50,
+                    speed: 90,
+                    fuel: 30
+                })
+            });
+
+            const data = await res.json();
+            document.getElementById('output').innerText = JSON.stringify(data, null, 2);
+        }
+    </script>
+</body>
+</html>
