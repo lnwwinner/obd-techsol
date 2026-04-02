@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OBD TechSol Pro Dashboard</title>
+    <style>
+        body { font-family: Arial; background: #0f172a; color: #fff; }
+        .card { background: #1e293b; padding: 15px; margin: 10px; border-radius: 10px; }
+        .grid { display: flex; gap: 10px; }
+    </style>
+</head>
+<body>
+
+<h1>🚀 OBD TechSol PRO Dashboard</h1>
+
+<div class="grid">
+    <div class="card">
+        <h3>Vehicle</h3>
+        <p id="vehicle">-</p>
+    </div>
+
+    <div class="card">
+        <h3>Speed</h3>
+        <p id="speed">-</p>
+    </div>
+
+    <div class="card">
+        <h3>Fuel</h3>
+        <p id="fuel">-</p>
+    </div>
+
+    <div class="card">
+        <h3>Score</h3>
+        <p id="score">-</p>
+    </div>
+</div>
+
+<div class="card">
+    <h3>Alerts</h3>
+    <p id="alerts">None</p>
+</div>
+
+<button onclick="loadData()">Refresh Data</button>
+
+<script>
+async function loadData() {
+    const res = await fetch('http://localhost:8000/data', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            vehicle_id: 'TRUCK001',
+            lat: 13.75,
+            lon: 100.50,
+            speed: Math.floor(Math.random()*130),
+            fuel: Math.floor(Math.random()*50)
+        })
+    });
+
+    const data = await res.json();
+
+    document.getElementById('vehicle').innerText = 'TRUCK001';
+    document.getElementById('speed').innerText = data.score ? data.score.score : '-';
+    document.getElementById('fuel').innerText = data.status;
+    document.getElementById('score').innerText = data.score.score;
+    document.getElementById('alerts').innerText = data.alerts.join(', ') || 'None';
+}
+</script>
+
+</body>
+</html>
