@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Fleet (User View)</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<style>
+body { margin:0; background:#0f172a; color:#fff; }
+#map { height:70vh; }
+.panel { padding:10px; }
+.card { background:#1e293b; margin:5px; padding:10px; border-radius:8px; }
+</style>
+</head>
+<body>
+
+<h2 style="padding:10px;">🚗 My Fleet</h2>
+<div id="map"></div>
+<div class="panel" id="list"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+let username = localStorage.getItem('username') || 'user1';
+let map = L.map('map').setView([13.75,100.50],12);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+let markers = {};
+
+async function load(){
+    const res = await fetch(`http://localhost:8000/my-vehicles/${username}`);
+    const vehicles = await res.json();
+
+    let list = document.getElementById('list');
+    list.innerHTML = '';
+
+    for(let v of vehicles){
+        const r = await fetch(`http://localhost:8000/vehicle/${v}/latest`);
+        const d = await r.json();
+
+        if(!d.lat) continue;
+
+        if(!markers[v]){
+            markers[v] = L.marker([d.lat,d.lon]).addTo(map);
+        } else {
+            markers[v].setLatLng([d.lat,d.lon]);
+        }
+
+        let card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+        <b>${v}</b><br>
+        Speed: ${d.speed}<br>
+        Fuel: ${d.fuel}
+        `;
+
+        list.appendChild(card);
+    }
+}
+
+setInterval(load,3000);
+</script>
+
+</body>
+</html>
