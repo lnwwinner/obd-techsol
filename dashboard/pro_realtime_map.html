@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OBD TechSol Live Map</title>
+    <style>
+        body { margin:0; font-family: Arial; background:#0f172a; color:#fff; }
+        #map { height: 60vh; }
+        .panel { padding:10px; background:#1e293b; }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+
+<h2 style="padding:10px;">🚀 Live Fleet Map</h2>
+<div id="map"></div>
+
+<div class="panel">
+    <b>Vehicle:</b> <span id="vehicle">-</span> |
+    <b>Speed:</b> <span id="speed">-</span> |
+    <b>Fuel:</b> <span id="fuel">-</span> |
+    <b>Score:</b> <span id="score">-</span> |
+    <b>Alerts:</b> <span id="alerts">-</span>
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+let map = L.map('map').setView([13.75, 100.50], 12);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19
+}).addTo(map);
+
+let marker = L.marker([13.75, 100.50]).addTo(map);
+
+async function updateData() {
+    const res = await fetch('http://localhost:8000/data', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            vehicle_id: 'TRUCK001',
+            lat: 13.75 + Math.random()*0.01,
+            lon: 100.50 + Math.random()*0.01,
+            speed: Math.floor(Math.random()*130),
+            fuel: Math.floor(Math.random()*50)
+        })
+    });
+
+    const data = await res.json();
+
+    let lat = 13.75 + Math.random()*0.01;
+    let lon = 100.50 + Math.random()*0.01;
+
+    marker.setLatLng([lat, lon]);
+    map.panTo([lat, lon]);
+
+    document.getElementById('vehicle').innerText = 'TRUCK001';
+    document.getElementById('speed').innerText = data.score.score;
+    document.getElementById('fuel').innerText = data.status;
+    document.getElementById('score').innerText = data.score.score;
+    document.getElementById('alerts').innerText = data.alerts.join(', ') || 'None';
+}
+
+setInterval(updateData, 3000);
+</script>
+
+</body>
+</html>
