@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fleet Dashboard</title>
+<style>
+body { font-family: Arial; background:#0f172a; color:white; }
+.card { background:#1e293b; padding:16px; margin:10px; border-radius:10px; }
+.grid { display:flex; flex-wrap:wrap; }
+</style>
+</head>
+<body>
+<h1>🚗 Fleet Live Dashboard</h1>
+<div class="grid" id="dashboard"></div>
+
+<script>
+async function loadData(){
+    const data = [
+        {vehicle:"TRUCK001", driver:"D001", status:"RUNNING", score:85},
+        {vehicle:"TRUCK002", driver:"D002", status:"IDLE", score:92}
+    ];
+
+    const container = document.getElementById("dashboard");
+    container.innerHTML = "";
+
+    data.forEach(v => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+            <h3>${v.vehicle}</h3>
+            <p>Driver: ${v.driver}</p>
+            <p>Status: ${v.status}</p>
+            <p>Score: ${v.score}</p>
+        `;
+        container.appendChild(card);
+    });
+}
+
+setInterval(loadData, 3000);
+loadData();
+</script>
+</body>
+</html>
