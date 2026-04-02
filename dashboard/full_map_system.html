@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OBD TechSol Full Map System</title>
+    <style>
+        body { margin:0; font-family: Arial; background:#0f172a; color:#fff; }
+        #map { height: 70vh; }
+        .panel { padding:10px; background:#1e293b; }
+        .vehicle-list { display:flex; gap:10px; flex-wrap:wrap; }
+        .card { background:#334155; padding:10px; border-radius:8px; }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+<body>
+
+<h2 style="padding:10px;">🚀 Fleet Control Center</h2>
+<div id="map"></div>
+
+<div class="panel">
+    <h3>Vehicles</h3>
+    <div id="vehicles" class="vehicle-list"></div>
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+let map = L.map('map').setView([13.75, 100.50], 12);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19
+}).addTo(map);
+
+let markers = {};
+
+function generateVehicle(id) {
+    return {
+        id: id,
+        lat: 13.75 + Math.random()*0.05,
+        lon: 100.50 + Math.random()*0.05,
+        speed: Math.floor(Math.random()*130),
+        fuel: Math.floor(Math.random()*50)
+    };
+}
+
+async function updateFleet() {
+    let fleet = ['TRUCK001','TRUCK002','TRUCK003'];
+
+    let container = document.getElementById('vehicles');
+    container.innerHTML = '';
+
+    for (let v of fleet) {
+        let data = generateVehicle(v);
+
+        const res = await fetch('http://localhost:8000/data', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        });
+
+        const result = await res.json();
+
+        if (!markers[v]) {
+            markers[v] = L.marker([data.lat, data.lon]).addTo(map);
+        } else {
+            markers[v].setLatLng([data.lat, data.lon]);
+        }
+
+        let card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <b>${v}</b><br>
+            Speed: ${data.speed}<br>
+            Fuel: ${data.fuel}<br>
+            Score: ${result.score.score}<br>
+            Alerts: ${result.alerts.join(', ') || 'None'}
+        `;
+
+        container.appendChild(card);
+    }
+}
+
+setInterval(updateFleet, 3000);
+</script>
+
+</body>
+</html>
